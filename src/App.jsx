@@ -16,7 +16,7 @@ const SYMBOLS = '!@#$%^&*()_+=-[]{}|;:,.<>?/';
 
 function getStrengthFromPassword(password) {
 
-  
+
     const length = password.length;
 
     const isUpppercaseIncluded = hasCommonCharacter(password, UPPERCASE);
@@ -24,22 +24,22 @@ function getStrengthFromPassword(password) {
     const isNumbersIncluded = hasCommonCharacter(password, NUMBERS);
     const isSymbolsIncluded = hasCommonCharacter(password, SYMBOLS);
 
-    let  totalActiveTypes = 0;
+    let totalActiveTypes = 0;
 
     if (isUpppercaseIncluded) {
-        totalActiveTypes ++
+        totalActiveTypes++
     }
 
     if (isLowercaseIncluded) {
-        totalActiveTypes ++
+        totalActiveTypes++
     }
 
     if (isNumbersIncluded) {
-        totalActiveTypes ++
+        totalActiveTypes++
     }
 
     if (isSymbolsIncluded) {
-        totalActiveTypes ++
+        totalActiveTypes++
     }
 
 
@@ -55,22 +55,25 @@ function getStrengthFromPassword(password) {
 function hasCommonCharacter(A, B) {
     const setA = new Set(A);
     for (const char of B) {
-      if (setA.has(char)) {
-        return true;
-      }
+        if (setA.has(char)) {
+            return true;
+        }
     }
     return false;
-  }
+}
 
 function App() {
+    let password;
     const [options, dispatch] = useReducer(reducer, initialOptions);
     const [length, setLength] = useState(10);
-    const [password, setPassword] = useState('');
+    // const [password, setPassword] = useState('');
 
+
+    password = generatePassword();
     const strength = getStrengthFromPassword(password);
 
 
-    const generatePassword = () => {
+    function generatePassword() {
         let charset = '';
         options.forEach(opt => {
             if (opt.status) {
@@ -82,7 +85,7 @@ function App() {
         });
 
         if (!charset) {
-            setPassword('Please select at least one option.');
+            password = 'Please select at least one option.';
             return;
         }
 
@@ -92,7 +95,7 @@ function App() {
             generated += charset[randomIndex];
         }
 
-        setPassword(generated);
+        return password = generated;
     };
 
 
@@ -120,11 +123,11 @@ function App() {
                 </div>
 
                 <div className="space-y-2 text-sm font-mono text-gray-300 mb-4">
-         
+
                     {options.map((option) => (
-                        <Checkbox id={option.id} status={option.status} dispatch={dispatch} title={option.title} />
+                        <Checkbox key={option.id} id={option.id} status={option.status} dispatch={dispatch} title={option.title} />
                     ))}
-            
+
 
                 </div>
 
@@ -137,7 +140,7 @@ function App() {
                     </div>
                 </div>
 
-                <Button generatePassword={generatePassword} />
+                {/* <Button generatePassword={generatePassword} /> */}
 
             </div>
         </div>

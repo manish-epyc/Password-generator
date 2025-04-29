@@ -1,6 +1,6 @@
 function Checkbox(props) {
     return (
-        <label key={props.id} className="flex items-center space-x-2">
+        <label className="flex items-center space-x-2">
             <input
                 type="checkbox"
                 className="form-checkbox text-green-400 rounded-sm"
@@ -15,5 +15,5 @@ function Checkbox(props) {
 export default Checkbox;
 
 
-/// Controlled inputs 
+/// Controlled inputs
 // Uncrontlled inputs
