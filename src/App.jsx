@@ -63,13 +63,13 @@ function hasCommonCharacter(A, B) {
 }
 
 function App() {
-    let password;
+    // let password;
     const [options, dispatch] = useReducer(reducer, initialOptions);
     const [length, setLength] = useState(10);
     // const [password, setPassword] = useState('');
 
 
-    password = generatePassword();
+    const password = generatePassword();
     const strength = getStrengthFromPassword(password);
 
 
@@ -85,8 +85,8 @@ function App() {
         });
 
         if (!charset) {
-            password = 'Please select at least one option.';
-            return;
+            return 'Please select at least one option.';
+
         }
 
         let generated = '';
@@ -95,7 +95,7 @@ function App() {
             generated += charset[randomIndex];
         }
 
-        return password = generated;
+        return generated;
     };
 
 
