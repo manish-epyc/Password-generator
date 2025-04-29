@@ -1,0 +1,2 @@
+- [ ] Read through the "Mangaging state completely" https://react.dev/learn/reacting-to-input-with-state
+- [ ] Generate password automatically. There should be no need to click "Generate" button 
